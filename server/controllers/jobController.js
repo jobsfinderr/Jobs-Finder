@@ -1,5 +1,6 @@
 const axios = require('axios')
 const nodemailer = require("nodemailer");
+const { decoded } = require("../helpers/jwt")
 
 class JobController {
     static getListJobs(req, res) {
@@ -15,11 +16,7 @@ class JobController {
     }
 
     static sendEmail(req, res) {
-
-        console.log("send email success");
-        console.log(req.body.company);
-
-
+        let dataUser = decoded(req.headers.token)
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -33,7 +30,7 @@ class JobController {
                             ${req.body.apply}`
         const mailOptions = {
             from: 'admin@jfinder.com', // sender address
-            to: `eliavictor96@gmail.com`, // list of receivers
+            to: dataUser.email, // list of receivers
             subject: 'Job-Finder', // Subject line
             html: emailCont
         };

@@ -15,3 +15,21 @@ function getMapData(data){
         console.log(err);
     })
 }
+
+function onSignIn(googleUser) {
+    const idToken= googleUser.getAuthResponse().id_token
+    $.ajax({
+        url: `http://localhost:3000/users/gsignin`,
+        type: 'post',
+        data: {
+           idToken
+        }
+    })
+    .done(function(data){
+        console.log(data)
+        localStorage.setItem('token', data.token)
+    })
+    .fail(function(err){
+        console.log(err)
+    })
+}
