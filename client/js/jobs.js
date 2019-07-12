@@ -2,8 +2,13 @@ const baseUrl = `http://localhost:3000`
 let foundJobs = []
 // let description = 
 function allJobs() {
-    $('#searching').click(function () {
+    $('.searching').click(function () {
         let keyword = $('#keyword-search').val()
+        $('#form-input-keyword').empty()
+        $('#form-input-keyword').append(
+            `<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>`
+        )
+
         $.ajax({
             method: 'GET',
             url: `${baseUrl}/jobs?search=${keyword}`
@@ -11,13 +16,11 @@ function allJobs() {
             .done(function (data) {
                 console.log(data);
                 foundJobs = data
-                $('#form-input-keyword').hide()
+                $('#form-input-keyword').empty()
                 $('#listJob').empty()
                 $('#form-input-keyword-get-list').show()
                 data.forEach(element => {
                     let description = element.description.split('\n')
-                    // console.log(description[0], "ini desccccccccc");
-                    
                     $('#listJob').append(`
                     <div id="form-list" class="card" style="margin-top:5%">
                         <div class="card-header">
@@ -75,7 +78,7 @@ function detailJobs(id){
         <h4>${detail.title}</h4>
         <a href=${detail.company_url}><small>${detail.company_url}</small></a>
         ${detail.description}
-        <button id="searching" type="button" class="btn btn-info"> Apply </button>
+        <button onclick="allJobs()" type="button" class="btn btn-info"> Apply </button>
     `)
 }
 
