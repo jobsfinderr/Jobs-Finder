@@ -101,13 +101,13 @@ function detailJobs(id){
     $('.detail-jobs').append(`
         <h2 class="col-8">${detail.company}</h2>
         <p class="col-4 text-truncate">Company Website: <a href="${detail.company_url}" target="blank"> ${detail.company_url} </a> </p>
-        <div class="col-12" id="googleMap" style="width:80vw;height:50vh;"></div> 
-        <div class="weather col-12" style="text-align:center"></div>
         <h1 class="col-8" style="margin-top:5%;">${detail.title}</h1>
         <div class="col-12" style="text-alignment: justify;"> ${detail.description} </div>
         <h6 class="col-12">How To Apply</h6> 
         <p class="col-12"> ${detail.how_to_apply} </p> 
-        <button id="sendEmail" class="btn btn-info col-12" style="margin-bottom: 10%;">Send to Email</button> 
+        <div class="col-12" id="googleMap" style="width:80vw;height:50vh;"></div> 
+        <div class="weather col-12" style="margin-top:5%; text-align:center;"></div>
+        <button id="sendEmail" class="btn btn-info col-12" style="margin-top:5%; margin-bottom: 10%;">Send to Email</button> 
     `)
 
 

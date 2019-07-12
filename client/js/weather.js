@@ -56,7 +56,7 @@ function displayForecast(data, date){
             <dt>${date}</dt>
             <dd>
                 <h5 style="color:rgb(51, 153, 255);text-align:center">${weather.data.weather}</h5>
-                <img src="${weather.data.imgUrl}" alt="weather symbol" height="120" width="120">
+                <img src="${weather.data.imgUrl}" alt="weather symbol" height="50" width="50">
             </dd>
             <dt style="color:rgb(51, 153, 255)">Temperature</dt>
             <dd>
