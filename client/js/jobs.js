@@ -3,7 +3,8 @@ const baseUrl = `http://localhost:3000`
 let foundJobs = []
 // let description = 
 function allJobs() {
-    $('.searching').click(function () {
+    $('.searching').click(function (event) {
+        event.preventDefault()
         let keyword = $('#keyword-search').val()
         $('#form-input-keyword').empty()
         $('#listJob').empty()
@@ -41,13 +42,20 @@ function allJobs() {
                         `)
                     });
                 } else {
-                    console.log("gak ada data di keywordnya");
                     $('#form-input-keyword').empty()
                     $('#listJob').empty()
                     $('#form-input-keyword-get-list').show()
-                    $('#listJob').append(
-                        `<h1> not found </h1>`
-                    )
+                    Swal.fire({
+                        title: 'Oops, job not found',
+                        text: `No result found for '${keyword}'. Try another keyword!`,
+                        type: 'error',
+                    })
+                    .then((result) => {
+                        console.log(result);
+                    })
+                    .catch(err => {
+                        console.log(err);              
+                    })
                 }
             })
             .fail(function (err) {
