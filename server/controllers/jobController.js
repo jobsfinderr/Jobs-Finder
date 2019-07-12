@@ -4,6 +4,8 @@ class JobController{
     static getListJobs(req, res){
         axios.get(`https://jobs.github.com/positions.json?description=${req.query.search}`)
         .then(response => {
+            console.log(response.data);
+            
             res.status(200).json(response.data)
         })
         .catch(err => {  
