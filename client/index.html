@@ -9,12 +9,14 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Literata&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script src="https://apis.google.com/js/platform.js"></script>
     <title>Jobs Finder</title>
 </head>
 
 <body>
+    <!-- Navbar
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">Navbar</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
@@ -37,21 +39,21 @@
                 </li>
             </ul>
         </div>
-    </nav>
+    </nav> -->
 
-    <!-- form keyword -->
     <div class="container" style="margin-top: 20px">
+        <!-- form keyword -->
         <div id="form-input-keyword" class="row">
-            <div class="col-md-8 offset-1" style="margin-top: 18%">
+            <div class="col-md-8 offset-2" style="margin-top: 25%;">
                 <div class="form-group">
-                    <h2 class="text-center">FIND YOUR JOB INTEREST</h2>
-                    <div class="row">
-                        <div class="col-md-11">
+                    <h2 class="text-center" style="font-family: 'Literata', serif;">Job Finder</h2>
+                    <div class="row" style="margin-left:10%;">
+                        <div class="col-md-10">
                             <input type="text" style="border-radius:20px" class="form-control" id="keyword-search"
-                                placeholder="type in here">
+                                placeholder="input your dream job">
                         </div>
                         <div class="col-md-1">
-                            <button id="searching" type="button" class="btn btn-info">Info</button>
+                            <button id="searching" type="button" class="btn btn-info">Find</button>
                         </div>
                     </div>
                 </div>
@@ -59,75 +61,35 @@
         </div>
 
         <!-- form with get list -->
-
         <div id="form-input-keyword-get-list" class="row">
             <div class="col-md-2">
-                <h6 class="text-center">FIND YOUR JOB INTEREST</h6>
+                <h6 class="text-center" style="font-family: 'Literata', serif; font-size: 24px; margin-top: 2%; margin-right: -5%;">Job Finder</h6>
             </div>    
                 <div class="col-md-8">
                     <input type="text" style="border-radius:20px" class="form-control" id="keyword-search"
                         placeholder="type in here">
                 </div>
                     <div class="col-md-1">
-                <button id="searching" type="button" class="btn btn-info" style="padding-left: 10%">Info</button>
+                <button id="searching" type="button" class="btn btn-info" style="padding-left: 10%">Find</button>
             </div>
         </div>
 
 
-            <!-- get list jobs -->
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-11" id="listJob">
-                    </div>
+        <!-- get list jobs -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-11" id="listJob">
                 </div>
-
-                <div class="detail-jobs"></div>
             </div>
-
-
-            <script src="https://code.jquery.com/jquery-3.4.1.min.js"
-                integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-                integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-                crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-                integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-                crossorigin="anonymous"></script>
-            <script src="js/jobs.js"></script>
-            <!-- <div class="row" style="margin-top: 25%;">
-        <div class="col-3"></div>
-        <div class="col-6">
-            <input class="form-control" type="text" placeholder="search" style="width: 100%;">
+            <div class="detail-jobs row">
+            </div>
         </div>
-        <div class="col-3"></div>
-    </div> -->
-            <!-- <div id="googleMap" style="width:50vw;height:50vh;"></div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"crossorigin="anonymous"></script>
+    <script src="js/jobs.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        
-        function myMap() {
-        getMapData("hacktiv8")
-        .then(coordinate=>{
-            var mapProp= {
-            center:new google.maps.LatLng(coordinate),
-            zoom:15,
-            };
-            var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
-            marker = new google.maps.Marker({
-                map: map,
-                // draggable: true,
-                animation: google.maps.Animation.DROP,
-                position: coordinate
-            });
-            marker.addListener('click', toggleBounce);
-        })
-        .catch(err=>{
-            console.log(err)
-        })
-    }
-   
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnX4XOhtETC-xh6vKy1KJPusRKLUCoPmY&callback=myMap"></script> -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBnX4XOhtETC-xh6vKy1KJPusRKLUCoPmY&callback=myMap"></script>
 </body>
 
 </html>
