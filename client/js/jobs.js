@@ -88,11 +88,22 @@ function detailJobs(id){
     $('.detail-jobs').append(`
         <h2 class="col-8">${detail.company}</h2>
         <p class="col-4 text-truncate">Company Website: <a href="${detail.company_url}" target="blank"> ${detail.company_url} </a> </p>
-        <div class="col-12" id="googleMap" style="width:80vw;height:50vh;"></div> 
+        <div class="col-10" id="googleMap" style="width:80vw;height:50vh;"></div> 
+        <div class="weather col-2" style="text-align:center"></div>
         <h1 class="col-8" style="margin-top:5%;">${detail.title}</h1>
         <div class="col-12" style="text-alignment: justify;"> ${detail.description} </div>
         <button id="searching" type="button" class="btn btn-info" class="col-12" style="width: 100%; margin-bottom: 5%; margin-top: 3%;"> Apply </button>
+
+        
     `)
+
+    getMapData(detail.company)
+    .then(coordinate=>{
+        displayWeather(coordinate)
+    })
+    .catch(err=>{
+        console.log(err)
+    })
 }
 
 function homePage(){

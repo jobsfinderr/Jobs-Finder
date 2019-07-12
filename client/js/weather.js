@@ -9,33 +9,33 @@ function displayWeather(coordinate){
     getWeather(coordinate)
     .then(weather=>{
         $('.weather').append(`
-            <dl style="width: 150px; background-color:white; border:black solid 1px">
-            <dt>Current Weather</dt>
+            <dl style="width: 250px; background-color:white">
+            <dt >Current Weather</dt>
             <dd>
-                <h6>${weather.data.weather}</h6>
-                <img src="${weather.data.imgUrl}" alt="weather symbol" height="42" width="42">
+                <h5 style="color:rgb(51, 153, 255);text-align:center">${weather.data.weather}</h5>
+                <img src="${weather.data.imgUrl}" alt="weather symbol" height="120" width="120">
             </dd>
-            <dt>Temperature</dt>
+            <dt style="color:rgb(51, 153, 255)">Temperature</dt>
             <dd>
-                <p>min: ${weather.data.min}°C</p>
-                <p>max: ${weather.data.max}°C</p>
-                <a href="http://metaweather.com/${weather.data.woeid}" target="_blank">More Weather Info</a>
+                <p >min: ${weather.data.min}°C</p>
+                <p >max: ${weather.data.max}°C</p>
+                <button onclick="window.open('http://metaweather.com/${weather.data.woeid}','_blank')" class="btn btn-info">More Weather Info</button>
             </dd>
             <dl>
         `)
     })
     .catch(err=>{
-        console.log("Error at getWeather", err)
+        console.log("Error at get Weather", err)
     })
 }
 
-// getMapData("Hacktiv8")
-// .then(coordinate=>{
-//     displayWeather(coordinate)
-// })
-// .catch(err=>{
-//     console.log(err)
-// })
+getMapData("Hacktiv8")
+.then(coordinate=>{
+    displayWeather(coordinate)
+})
+.catch(err=>{
+    console.log(err)
+})
         
 
 
