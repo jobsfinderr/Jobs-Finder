@@ -14,8 +14,8 @@ class UserController {
             const payload = ticket.getPayload()
             const name = payload.name
             const email = payload.email
-            const payload = { name, email }
-            const token = sign(payload)
+            const payloadToken = { name, email }
+            const token = sign(payloadToken)
             let obj = { token:token }
             res.status(200).json(obj)
         }
