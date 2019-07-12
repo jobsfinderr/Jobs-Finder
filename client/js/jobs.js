@@ -1,4 +1,5 @@
 const baseUrl = `http://localhost:3000`
+
 let foundJobs = []
 // let description = 
 function allJobs() {
@@ -90,9 +91,11 @@ function detailJobs(id){
             detail = element
         }
     })
-
+    
     myMap(detail.company)
-
+    let apply = detail.how_to_apply
+    let htmlElement = $.parseHTML(apply)
+    //let stringApply = String(apply)
     $('#listJob').empty()
     $('#form-input-keyword-get-list').empty()
     $('.detail-jobs').show()
@@ -104,13 +107,33 @@ function detailJobs(id){
         <div class="col-12" style="text-alignment: justify;"> ${detail.description} </div>
         <h6 class="col-12">How To Apply</h6> 
         <p class="col-12"> ${detail.how_to_apply} </p> 
+        <button id="sendEmail" class="btn btn-info col-12">Send  to Email</button> 
     `)
+
+    $("#sendEmail").click(function(){
+      sendEmail(detail.title, detail.company, detail.how_to_apply)  
+    })
+
 }
 
 //  <button id="searching" type="button" class="btn btn-info" class="col-12" style="width: 100%; margin-bottom: 5%; margin-top: 3%; disabled"> Apply </button>  
 function homePage(){
     $('.detail-jobs').empty()
     $('#form-input-keyword').show()
+}
+
+function sendEmail(title, company, apply){
+    $.ajax({
+        method: 'post',
+        url: `${baseUrl}/jobs/sendEmail`,
+        data : { title, company, apply }
+    })
+        .done(function (data) {
+            console.log(data);
+        })
+        .fail(function (err) {
+            console.log(err);
+        })
 }
 
 $(document).ready(function(){
