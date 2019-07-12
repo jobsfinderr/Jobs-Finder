@@ -18,7 +18,6 @@ function allJobs() {
         })
             .done(function (data) {
                 console.log(data);
-                
                 if(data.length > 0){
                     foundJobs = data
                     $('#form-input-keyword').empty()
@@ -108,7 +107,7 @@ function detailJobs(id){
         <div class="col-12" style="text-alignment: justify;"> ${detail.description} </div>
         <h6 class="col-12">How To Apply</h6> 
         <p class="col-12"> ${detail.how_to_apply} </p> 
-        <button id="sendEmail" class="btn btn-info col-12">Send  to Email</button> 
+        <button id="sendEmail" class="btn btn-info col-12" style="margin-bottom: 10%;">Send to Email</button> 
     `)
 
     $("#sendEmail").click(function(){
@@ -131,17 +130,44 @@ function homePage(){
 }
 
 function sendEmail(title, company, apply){
-    $.ajax({
-        method: 'post',
-        url: `${baseUrl}/jobs/sendEmail`,
-        data : { title, company, apply }
-    })
+    if (localStorage.getItem('token')) {
+        Swal.fire({
+            title: 'Success sent to email',
+            text: 'Check your email',
+            type: 'success',
+        })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch(err => {
+            console.log(err);              
+        })
+        // PROCESS SENT EMAIL
+        $.ajax({
+            method: 'post',
+            url: `${baseUrl}/jobs/sendEmail`,
+            data : { title, company, apply },
+            headers: { token : localStorage.getItem('token') }
+        })
         .done(function (data) {
             console.log(data);
         })
         .fail(function (err) {
             console.log(err);
         })
+    } else {
+        Swal.fire({
+            title: 'You must login to sent email',
+            text: 'Refresh page to login',
+            type: 'error',
+        })
+        .then((result) => {
+            console.log(result);
+        })
+        .catch(err => {
+            console.log(err);              
+        })
+    }
 }
 
 $(document).ready(function(){
